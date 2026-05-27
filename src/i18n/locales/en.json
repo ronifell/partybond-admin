@@ -1,0 +1,316 @@
+{
+  "app": {
+    "name": "Partybond Admin",
+    "tagline": "Mission control for the matchmaking world"
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "edit": "Edit",
+    "create": "Create",
+    "search": "Search",
+    "filter": "Filter",
+    "actions": "Actions",
+    "status": "Status",
+    "loading": "Loading…",
+    "error": "Something went wrong",
+    "retry": "Retry",
+    "yes": "Yes",
+    "no": "No",
+    "all": "All",
+    "none": "None",
+    "back": "Back",
+    "close": "Close",
+    "next": "Next",
+    "previous": "Previous",
+    "page": "Page",
+    "of": "of",
+    "noResults": "No results",
+    "empty": "Nothing to show yet",
+    "copy": "Copy",
+    "copied": "Copied",
+    "openDetails": "Open details",
+    "saving": "Saving…",
+    "saved": "Saved",
+    "deleting": "Deleting…",
+    "createdAt": "Created at",
+    "updatedAt": "Updated at",
+    "joined": "Joined",
+    "lastSeen": "Last seen",
+    "never": "Never",
+    "online": "Online",
+    "offline": "Offline",
+    "details": "Details"
+  },
+  "auth": {
+    "loginTitle": "Sign in to the admin panel",
+    "loginSubtitle": "Only Partybond administrators can sign in here.",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign in",
+    "signingIn": "Signing in…",
+    "invalidCredentials": "Invalid credentials",
+    "notAdmin": "You do not have admin privileges.",
+    "accountBanned": "This account is suspended.",
+    "signOut": "Sign out",
+    "needBootstrap": "Need to create the first admin? Run `npm run admin:promote -- <email>` in the Backend."
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "users": "Users",
+    "reports": "Reports",
+    "games": "Games",
+    "sessions": "Sessions",
+    "matches": "Matches",
+    "settings": "Settings"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "An overview of activity, moderation, and the game catalog.",
+    "totalUsers": "Total users",
+    "newUsers24h": "New (24h)",
+    "newUsers7d": "New (7d)",
+    "bannedUsers": "Banned users",
+    "admins": "Administrators",
+    "games": "Games",
+    "activeGames": "Active games",
+    "sessions": "Sessions",
+    "openSessions": "Open sessions",
+    "activeMatches": "Active matches",
+    "finishedMatches": "Finished matches",
+    "openReports": "Pending reports",
+    "totalReports": "Reports (all time)",
+    "chartTitle": "Matches over the last 7 days",
+    "chartStarted": "Started",
+    "chartEnded": "Ended",
+    "recentRegistrations": "Recent registrations",
+    "noRecentUsers": "No recent registrations."
+  },
+  "users": {
+    "title": "Users",
+    "subtitle": "Browse, restrict and remove application users.",
+    "searchPlaceholder": "Search by name, email or ID…",
+    "filters": {
+      "all": "All",
+      "active": "Active",
+      "banned": "Banned",
+      "admin": "Admins"
+    },
+    "columns": {
+      "user": "User",
+      "email": "Email",
+      "state": "State",
+      "game": "Game",
+      "joined": "Joined",
+      "reports": "Reports",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "state": {
+      "idle": "Idle",
+      "in_queue": "In queue",
+      "in_match": "In match"
+    },
+    "tag": {
+      "admin": "Admin",
+      "banned": "Banned",
+      "active": "Active"
+    },
+    "action": {
+      "ban": "Ban",
+      "unban": "Unban",
+      "delete": "Delete",
+      "makeAdmin": "Make admin",
+      "revokeAdmin": "Revoke admin"
+    },
+    "ban": {
+      "title": "Ban user",
+      "subtitle": "The user will be unable to sign in. You can reverse this at any time.",
+      "reason": "Reason (optional, visible to the user)",
+      "reasonPlaceholder": "e.g. Repeated harassment",
+      "confirm": "Confirm ban"
+    },
+    "delete": {
+      "title": "Delete user",
+      "subtitle": "This permanently removes the user and all their data. This action cannot be undone.",
+      "confirm": "Yes, delete user"
+    },
+    "detail": {
+      "title": "User detail",
+      "personal": "Personal information",
+      "stats": "Activity",
+      "gameProfiles": "Game profiles",
+      "recentReports": "Recent reports received",
+      "noGameProfiles": "No game profiles linked yet.",
+      "noRecentReports": "No reports filed against this user."
+    },
+    "banned": "Banned",
+    "bannedSince": "Banned since",
+    "banReason": "Reason"
+  },
+  "reports": {
+    "title": "Reports",
+    "subtitle": "Triage user reports and decide on moderation actions.",
+    "filters": {
+      "all": "All",
+      "open": "Open",
+      "reviewed": "Reviewed",
+      "dismissed": "Dismissed"
+    },
+    "category": {
+      "spam": "Spam",
+      "harassment": "Harassment",
+      "offensive_language": "Offensive language",
+      "inappropriate_content": "Inappropriate content",
+      "other": "Other"
+    },
+    "columns": {
+      "reported": "Reported user",
+      "reporter": "Reporter",
+      "category": "Category",
+      "details": "Details",
+      "status": "Status",
+      "createdAt": "Filed at",
+      "actions": "Actions"
+    },
+    "status": {
+      "open": "Open",
+      "reviewed": "Reviewed",
+      "dismissed": "Dismissed"
+    },
+    "actions": {
+      "review": "Mark as reviewed",
+      "dismiss": "Dismiss",
+      "reopen": "Reopen",
+      "banReported": "Ban reported user"
+    },
+    "noDetails": "No additional details provided.",
+    "noteLabel": "Admin note (optional)",
+    "notePlaceholder": "Internal note about this resolution…",
+    "updateError": "Could not update report."
+  },
+  "games": {
+    "title": "Games",
+    "subtitle": "Add new games, hide games as “coming soon”, or remove unused ones.",
+    "addGame": "Add game",
+    "editGame": "Edit game",
+    "columns": {
+      "game": "Game",
+      "id": "ID",
+      "status": "Status",
+      "maxPlayers": "Max players",
+      "sessions": "Sessions",
+      "players": "Players",
+      "actions": "Actions"
+    },
+    "status": {
+      "active": "Active",
+      "coming_soon": "Coming soon"
+    },
+    "form": {
+      "id": "ID",
+      "idHint": "Lowercase letters, digits and underscore. Example: free_fire",
+      "name": "Display name",
+      "namePlaceholder": "e.g. Free Fire",
+      "status": "Status",
+      "maxPlayers": "Maximum players",
+      "create": "Create game",
+      "update": "Update game"
+    },
+    "deleteTitle": "Delete game",
+    "deleteSubtitle": "The game must have no sessions or player profiles. To temporarily hide it from the catalog, switch its status to “coming soon” instead.",
+    "deleteConfirm": "Delete permanently"
+  },
+  "sessions": {
+    "title": "Sessions",
+    "subtitle": "Inspect and remove matchmaking sessions.",
+    "filters": {
+      "status": "Status",
+      "game": "Game",
+      "all": "All games"
+    },
+    "status": {
+      "all": "All",
+      "open": "Open",
+      "active": "Active",
+      "finished": "Finished"
+    },
+    "columns": {
+      "title": "Title",
+      "game": "Game",
+      "creator": "Creator",
+      "mode": "Mode",
+      "players": "Players",
+      "queue": "Queue",
+      "matches": "Matches",
+      "status": "Status",
+      "scheduled": "Scheduled",
+      "actions": "Actions"
+    },
+    "deleteTitle": "Delete session",
+    "deleteSubtitle": "All queue entries and matches in this session will be removed. This cannot be undone."
+  },
+  "matches": {
+    "title": "Matches",
+    "subtitle": "Live and historical pair-ups between players.",
+    "filters": {
+      "all": "All",
+      "active": "Active",
+      "finished": "Finished",
+      "expired": "Expired"
+    },
+    "columns": {
+      "players": "Players",
+      "session": "Session",
+      "status": "Status",
+      "interactions": "Interactions",
+      "started": "Started",
+      "ended": "Ended",
+      "actions": "Actions"
+    },
+    "actions": {
+      "forceFinish": "Force finish",
+      "viewInteractions": "View interactions"
+    },
+    "interactions": {
+      "title": "Match interactions",
+      "empty": "No interactions exchanged.",
+      "types": {
+        "add_me": "Add me",
+        "already_added": "Already added",
+        "enter_lobby": "Enter lobby",
+        "waiting": "Waiting",
+        "did_not_work": "It didn’t work"
+      }
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Customize your admin experience.",
+    "language": "Language",
+    "languageHint": "Changes the language of the admin panel for this device.",
+    "english": "English",
+    "portuguese": "Português (Brasil)",
+    "profile": "My profile",
+    "signedInAs": "Signed in as",
+    "backend": "Backend",
+    "backendHint": "All operations call the same API used by the mobile app."
+  },
+  "toasts": {
+    "saved": "Saved successfully",
+    "deleted": "Deleted successfully",
+    "banned": "User banned",
+    "unbanned": "User unbanned",
+    "promoted": "User promoted to admin",
+    "demoted": "Admin privileges revoked",
+    "gameCreated": "Game created",
+    "gameUpdated": "Game updated",
+    "gameDeleted": "Game removed",
+    "sessionDeleted": "Session deleted",
+    "matchFinished": "Match forced to finish",
+    "reportUpdated": "Report updated",
+    "error": "Something went wrong"
+  }
+}

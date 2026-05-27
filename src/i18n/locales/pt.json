@@ -1,0 +1,316 @@
+{
+  "app": {
+    "name": "Partybond Admin",
+    "tagline": "Centro de comando do universo de matchmaking"
+  },
+  "common": {
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "delete": "Excluir",
+    "confirm": "Confirmar",
+    "edit": "Editar",
+    "create": "Criar",
+    "search": "Pesquisar",
+    "filter": "Filtrar",
+    "actions": "Ações",
+    "status": "Status",
+    "loading": "Carregando…",
+    "error": "Algo deu errado",
+    "retry": "Tentar novamente",
+    "yes": "Sim",
+    "no": "Não",
+    "all": "Todos",
+    "none": "Nenhum",
+    "back": "Voltar",
+    "close": "Fechar",
+    "next": "Próxima",
+    "previous": "Anterior",
+    "page": "Página",
+    "of": "de",
+    "noResults": "Sem resultados",
+    "empty": "Ainda não há nada para mostrar",
+    "copy": "Copiar",
+    "copied": "Copiado",
+    "openDetails": "Abrir detalhes",
+    "saving": "Salvando…",
+    "saved": "Salvo",
+    "deleting": "Excluindo…",
+    "createdAt": "Criado em",
+    "updatedAt": "Atualizado em",
+    "joined": "Entrou em",
+    "lastSeen": "Visto por último",
+    "never": "Nunca",
+    "online": "Online",
+    "offline": "Offline",
+    "details": "Detalhes"
+  },
+  "auth": {
+    "loginTitle": "Entrar no painel administrativo",
+    "loginSubtitle": "Apenas administradores do Partybond podem acessar.",
+    "email": "E-mail",
+    "password": "Senha",
+    "signIn": "Entrar",
+    "signingIn": "Entrando…",
+    "invalidCredentials": "Credenciais inválidas",
+    "notAdmin": "Você não tem privilégios de administrador.",
+    "accountBanned": "Esta conta está suspensa.",
+    "signOut": "Sair",
+    "needBootstrap": "Precisa criar o primeiro administrador? Rode `npm run admin:promote -- <email>` no Backend."
+  },
+  "nav": {
+    "dashboard": "Painel",
+    "users": "Usuários",
+    "reports": "Denúncias",
+    "games": "Jogos",
+    "sessions": "Sessões",
+    "matches": "Partidas",
+    "settings": "Configurações"
+  },
+  "dashboard": {
+    "title": "Painel",
+    "subtitle": "Visão geral da atividade, moderação e catálogo de jogos.",
+    "totalUsers": "Total de usuários",
+    "newUsers24h": "Novos (24h)",
+    "newUsers7d": "Novos (7d)",
+    "bannedUsers": "Usuários banidos",
+    "admins": "Administradores",
+    "games": "Jogos",
+    "activeGames": "Jogos ativos",
+    "sessions": "Sessões",
+    "openSessions": "Sessões abertas",
+    "activeMatches": "Partidas ativas",
+    "finishedMatches": "Partidas finalizadas",
+    "openReports": "Denúncias pendentes",
+    "totalReports": "Denúncias (total)",
+    "chartTitle": "Partidas nos últimos 7 dias",
+    "chartStarted": "Iniciadas",
+    "chartEnded": "Encerradas",
+    "recentRegistrations": "Cadastros recentes",
+    "noRecentUsers": "Nenhum cadastro recente."
+  },
+  "users": {
+    "title": "Usuários",
+    "subtitle": "Pesquise, restrinja e remova usuários do app.",
+    "searchPlaceholder": "Pesquisar por nome, e-mail ou ID…",
+    "filters": {
+      "all": "Todos",
+      "active": "Ativos",
+      "banned": "Banidos",
+      "admin": "Administradores"
+    },
+    "columns": {
+      "user": "Usuário",
+      "email": "E-mail",
+      "state": "Estado",
+      "game": "Jogo",
+      "joined": "Entrada",
+      "reports": "Denúncias",
+      "status": "Status",
+      "actions": "Ações"
+    },
+    "state": {
+      "idle": "Ocioso",
+      "in_queue": "Na fila",
+      "in_match": "Em partida"
+    },
+    "tag": {
+      "admin": "Admin",
+      "banned": "Banido",
+      "active": "Ativo"
+    },
+    "action": {
+      "ban": "Banir",
+      "unban": "Desbanir",
+      "delete": "Excluir",
+      "makeAdmin": "Tornar admin",
+      "revokeAdmin": "Revogar admin"
+    },
+    "ban": {
+      "title": "Banir usuário",
+      "subtitle": "O usuário não conseguirá entrar no app. Você pode reverter a qualquer momento.",
+      "reason": "Motivo (opcional, visível ao usuário)",
+      "reasonPlaceholder": "ex.: Assédio recorrente",
+      "confirm": "Confirmar banimento"
+    },
+    "delete": {
+      "title": "Excluir usuário",
+      "subtitle": "Esta ação remove o usuário e todos os dados associados. Não pode ser desfeita.",
+      "confirm": "Sim, excluir usuário"
+    },
+    "detail": {
+      "title": "Detalhes do usuário",
+      "personal": "Informações pessoais",
+      "stats": "Atividade",
+      "gameProfiles": "Perfis de jogos",
+      "recentReports": "Denúncias recentes recebidas",
+      "noGameProfiles": "Nenhum perfil de jogo ainda.",
+      "noRecentReports": "Nenhuma denúncia contra este usuário."
+    },
+    "banned": "Banido",
+    "bannedSince": "Banido desde",
+    "banReason": "Motivo"
+  },
+  "reports": {
+    "title": "Denúncias",
+    "subtitle": "Triagem de denúncias e decisões de moderação.",
+    "filters": {
+      "all": "Todas",
+      "open": "Abertas",
+      "reviewed": "Revisadas",
+      "dismissed": "Descartadas"
+    },
+    "category": {
+      "spam": "Spam",
+      "harassment": "Assédio",
+      "offensive_language": "Linguagem ofensiva",
+      "inappropriate_content": "Conteúdo impróprio",
+      "other": "Outro"
+    },
+    "columns": {
+      "reported": "Usuário denunciado",
+      "reporter": "Denunciante",
+      "category": "Categoria",
+      "details": "Detalhes",
+      "status": "Status",
+      "createdAt": "Criada em",
+      "actions": "Ações"
+    },
+    "status": {
+      "open": "Aberta",
+      "reviewed": "Revisada",
+      "dismissed": "Descartada"
+    },
+    "actions": {
+      "review": "Marcar como revisada",
+      "dismiss": "Descartar",
+      "reopen": "Reabrir",
+      "banReported": "Banir denunciado"
+    },
+    "noDetails": "Sem detalhes adicionais.",
+    "noteLabel": "Nota interna (opcional)",
+    "notePlaceholder": "Nota interna sobre a resolução…",
+    "updateError": "Não foi possível atualizar a denúncia."
+  },
+  "games": {
+    "title": "Jogos",
+    "subtitle": "Adicione jogos novos, oculte como “em breve” ou remova jogos não usados.",
+    "addGame": "Adicionar jogo",
+    "editGame": "Editar jogo",
+    "columns": {
+      "game": "Jogo",
+      "id": "ID",
+      "status": "Status",
+      "maxPlayers": "Jogadores máx.",
+      "sessions": "Sessões",
+      "players": "Jogadores",
+      "actions": "Ações"
+    },
+    "status": {
+      "active": "Ativo",
+      "coming_soon": "Em breve"
+    },
+    "form": {
+      "id": "ID",
+      "idHint": "Letras minúsculas, dígitos e sublinhado. Exemplo: free_fire",
+      "name": "Nome de exibição",
+      "namePlaceholder": "ex.: Free Fire",
+      "status": "Status",
+      "maxPlayers": "Jogadores máximos",
+      "create": "Criar jogo",
+      "update": "Atualizar jogo"
+    },
+    "deleteTitle": "Excluir jogo",
+    "deleteSubtitle": "O jogo não pode ter sessões ou perfis de jogadores. Para ocultar temporariamente do catálogo, altere o status para “em breve”.",
+    "deleteConfirm": "Excluir definitivamente"
+  },
+  "sessions": {
+    "title": "Sessões",
+    "subtitle": "Visualize e remova sessões de matchmaking.",
+    "filters": {
+      "status": "Status",
+      "game": "Jogo",
+      "all": "Todos os jogos"
+    },
+    "status": {
+      "all": "Todas",
+      "open": "Abertas",
+      "active": "Ativas",
+      "finished": "Finalizadas"
+    },
+    "columns": {
+      "title": "Título",
+      "game": "Jogo",
+      "creator": "Criador",
+      "mode": "Modo",
+      "players": "Jogadores",
+      "queue": "Fila",
+      "matches": "Partidas",
+      "status": "Status",
+      "scheduled": "Agendada",
+      "actions": "Ações"
+    },
+    "deleteTitle": "Excluir sessão",
+    "deleteSubtitle": "Todas as filas e partidas desta sessão serão removidas. Não pode ser desfeito."
+  },
+  "matches": {
+    "title": "Partidas",
+    "subtitle": "Pareamentos em andamento e histórico.",
+    "filters": {
+      "all": "Todas",
+      "active": "Ativas",
+      "finished": "Finalizadas",
+      "expired": "Expiradas"
+    },
+    "columns": {
+      "players": "Jogadores",
+      "session": "Sessão",
+      "status": "Status",
+      "interactions": "Interações",
+      "started": "Início",
+      "ended": "Fim",
+      "actions": "Ações"
+    },
+    "actions": {
+      "forceFinish": "Forçar finalização",
+      "viewInteractions": "Ver interações"
+    },
+    "interactions": {
+      "title": "Interações da partida",
+      "empty": "Nenhuma interação trocada.",
+      "types": {
+        "add_me": "Me adicione",
+        "already_added": "Já te adicionei",
+        "enter_lobby": "Entrar no lobby",
+        "waiting": "Aguardando",
+        "did_not_work": "Não funcionou"
+      }
+    }
+  },
+  "settings": {
+    "title": "Configurações",
+    "subtitle": "Personalize sua experiência no painel.",
+    "language": "Idioma",
+    "languageHint": "Altera o idioma do painel administrativo neste dispositivo.",
+    "english": "English",
+    "portuguese": "Português (Brasil)",
+    "profile": "Meu perfil",
+    "signedInAs": "Conectado como",
+    "backend": "Backend",
+    "backendHint": "Todas as operações usam a mesma API do app mobile."
+  },
+  "toasts": {
+    "saved": "Salvo com sucesso",
+    "deleted": "Excluído com sucesso",
+    "banned": "Usuário banido",
+    "unbanned": "Usuário desbanido",
+    "promoted": "Usuário promovido a admin",
+    "demoted": "Privilégios de admin revogados",
+    "gameCreated": "Jogo criado",
+    "gameUpdated": "Jogo atualizado",
+    "gameDeleted": "Jogo removido",
+    "sessionDeleted": "Sessão excluída",
+    "matchFinished": "Partida finalizada manualmente",
+    "reportUpdated": "Denúncia atualizada",
+    "error": "Algo deu errado"
+  }
+}
