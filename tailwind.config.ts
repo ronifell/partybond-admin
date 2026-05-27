@@ -33,11 +33,11 @@ const config: Config = {
           info: '#00D1FF',
         },
         glass: {
-          surface: 'rgba(20,20,32,0.55)',
-          'surface-light': 'rgba(28,28,44,0.45)',
+          surface: 'rgba(8, 8, 16, 0.28)',
+          'surface-light': 'rgba(255, 255, 255, 0.06)',
           border: 'rgba(255,255,255,0.10)',
           'border-strong': 'rgba(255,255,255,0.18)',
-          highlight: 'rgba(255,255,255,0.04)',
+          highlight: 'rgba(255,255,255,0.06)',
         },
       },
       borderRadius: {

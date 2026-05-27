@@ -46,12 +46,6 @@ export default function LoginPage() {
 
   return (
     <div className="flex min-h-screen items-center justify-center px-4 py-10">
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute -left-32 top-10 h-80 w-80 rounded-full bg-brand-purple/30 blur-3xl" />
-        <div className="absolute -right-32 top-1/2 h-72 w-72 rounded-full bg-brand-pink/25 blur-3xl" />
-        <div className="absolute bottom-0 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-brand-blue/20 blur-3xl" />
-      </div>
-
       <Card className="w-full max-w-md border-glass-border-strong shadow-soft">
         <div className="space-y-6 p-7">
           <div className="flex flex-col items-center gap-4 text-center">

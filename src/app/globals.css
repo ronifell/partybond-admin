@@ -3,9 +3,12 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    min-height: 100%;
+  }
+
   html,
   body {
-    background: #0A0A12;
     color: #FFFFFF;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -13,13 +16,21 @@
   }
 
   body {
-    background:
-      radial-gradient(circle at 12% -10%, rgba(123, 63, 242, 0.25) 0%, transparent 40%),
-      radial-gradient(circle at 110% 10%, rgba(0, 209, 255, 0.20) 0%, transparent 38%),
-      radial-gradient(circle at 50% 120%, rgba(255, 77, 166, 0.20) 0%, transparent 45%),
-      #0A0A12;
-    background-attachment: fixed;
+    position: relative;
     min-height: 100vh;
+    background: transparent;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-color: #0A0A12;
+    background-image: url('/bg.png');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
   }
 
   ::selection {
@@ -30,7 +41,7 @@
 
 @layer components {
   .glass-card {
-    @apply rounded-2xl border border-glass-border bg-glass-surface backdrop-blur-xl shadow-soft;
+    @apply rounded-2xl border border-glass-border bg-glass-surface backdrop-blur-md shadow-soft;
   }
 
   .glass-card-hover {
@@ -57,7 +68,7 @@
   }
 
   .input-base {
-    @apply w-full rounded-xl2 border border-glass-border bg-bg-card px-3.5 py-2.5 text-sm text-ink placeholder:text-ink-disabled outline-none transition-colors focus:border-brand-purple focus:shadow-glow-soft disabled:cursor-not-allowed disabled:opacity-50;
+    @apply w-full rounded-xl2 border border-glass-border bg-glass-surface px-3.5 py-2.5 text-sm text-ink placeholder:text-ink-disabled outline-none backdrop-blur-sm transition-colors focus:border-brand-purple focus:shadow-glow-soft disabled:cursor-not-allowed disabled:opacity-50;
   }
 
   .label-base {

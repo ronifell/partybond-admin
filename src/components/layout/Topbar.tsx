@@ -15,7 +15,7 @@ export function Topbar({ onOpenSidebar }: TopbarProps) {
   const { t, locale, setLocale } = useI18n();
 
   return (
-    <header className="sticky top-0 z-20 flex h-16 items-center gap-3 border-b border-glass-border bg-bg/70 px-4 backdrop-blur-xl lg:px-8">
+    <header className="sticky top-0 z-20 flex h-16 items-center gap-3 border-b border-glass-border bg-black/5 px-4 backdrop-blur-sm lg:px-8">
       <button
         type="button"
         onClick={onOpenSidebar}

@@ -39,7 +39,7 @@ export function Button({
     danger:
       'border border-status-error/40 bg-status-error/10 text-status-error hover:bg-status-error/20',
     subtle:
-      'border border-transparent bg-bg-card text-ink-secondary hover:text-ink hover:bg-glass-surface-light',
+      'border border-transparent bg-glass-surface text-ink-secondary hover:text-ink hover:bg-glass-surface-light',
   };
 
   return (
