@@ -51,7 +51,7 @@ export function Modal({
       <div
         role="dialog"
         className={cn(
-          'glass-card w-full animate-fade-in border-glass-border-strong bg-glass-surface backdrop-blur-md',
+          'glass-card w-full animate-fade-in border-glass-border-strong bg-black',
           sizeClass[size],
         )}
         onClick={(e) => e.stopPropagation()}

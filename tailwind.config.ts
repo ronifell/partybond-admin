@@ -18,7 +18,7 @@ const config: Config = {
         bg: {
           DEFAULT: '#0A0A12',
           surface: '#12121A',
-          card: '#1C1C28',
+          card: '#000000',
           border: '#2A2A38',
         },
         ink: {
@@ -33,11 +33,11 @@ const config: Config = {
           info: '#00D1FF',
         },
         glass: {
-          surface: 'rgba(8, 8, 16, 0.28)',
-          'surface-light': 'rgba(255, 255, 255, 0.06)',
+          surface: '#000000',
+          'surface-light': '#0a0a0a',
           border: 'rgba(255,255,255,0.10)',
           'border-strong': 'rgba(255,255,255,0.18)',
-          highlight: 'rgba(255,255,255,0.06)',
+          highlight: '#111111',
         },
       },
       borderRadius: {
