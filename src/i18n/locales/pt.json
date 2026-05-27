@@ -46,7 +46,8 @@
   },
   "auth": {
     "loginTitle": "Entrar no painel administrativo",
-    "loginSubtitle": "Apenas administradores do Partybond podem acessar.",
+    "loginSubtitle": "Entre para acessar o painel administrativo.",
+    "selectLanguage": "Selecionar idioma",
     "email": "E-mail",
     "password": "Senha",
     "signIn": "Entrar",
@@ -55,7 +56,9 @@
     "notAdmin": "Você não tem privilégios de administrador.",
     "accountBanned": "Esta conta está suspensa.",
     "signOut": "Sair",
-    "needBootstrap": "Precisa criar o primeiro administrador? Rode `npm run admin:promote -- <email>` no Backend."
+    "needBootstrapPrefix": "Precisa criar o primeiro administrador? Execute",
+    "needBootstrapCommand": "npm run admin:promote -- --email=\"youremail@domain.com\"",
+    "needBootstrapSuffix": "no Backend."
   },
   "nav": {
     "dashboard": "Painel",

@@ -102,9 +102,17 @@ export function Sidebar({ open, onClose }: SidebarProps) {
           </ul>
         </nav>
 
-        <div className="border-t border-glass-border px-5 py-4 text-[11px] text-ink-disabled">
-          <p className="gradient-text font-semibold uppercase tracking-wider">Partybond</p>
-          <p className="mt-1">{t('app.tagline')}</p>
+        <div className="mt-auto flex w-full shrink-0 flex-col">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/left.png"
+            alt=""
+            className="block w-full object-cover object-bottom"
+          />
+          <div className="border-t border-glass-border bg-black px-5 py-4 text-[11px] text-ink-disabled">
+            <p className="gradient-text font-semibold uppercase tracking-wider">Partybond</p>
+            <p className="mt-1">{t('app.tagline')}</p>
+          </div>
         </div>
       </aside>
     </>

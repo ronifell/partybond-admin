@@ -46,7 +46,8 @@
   },
   "auth": {
     "loginTitle": "Sign in to the admin panel",
-    "loginSubtitle": "Only Partybond administrators can sign in here.",
+    "loginSubtitle": "Sign in to access the administrator dashboard.",
+    "selectLanguage": "Select language",
     "email": "Email",
     "password": "Password",
     "signIn": "Sign in",
@@ -55,7 +56,9 @@
     "notAdmin": "You do not have admin privileges.",
     "accountBanned": "This account is suspended.",
     "signOut": "Sign out",
-    "needBootstrap": "Need to create the first admin? Run `npm run admin:promote -- <email>` in the Backend."
+    "needBootstrapPrefix": "Need to create the first admin? Run",
+    "needBootstrapCommand": "npm run admin:promote -- --email=\"youremail@domain.com\"",
+    "needBootstrapSuffix": "in the Backend."
   },
   "nav": {
     "dashboard": "Dashboard",
