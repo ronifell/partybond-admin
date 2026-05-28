@@ -10,7 +10,7 @@ export function Card({ className, children, hoverable, ...rest }: CardProps) {
   return (
     <div
       className={cn(
-        'glass-card relative overflow-hidden',
+        'glass-card relative overflow-visible',
         hoverable && 'glass-card-hover',
         className,
       )}

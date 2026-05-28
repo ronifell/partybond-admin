@@ -161,4 +161,34 @@ export const Icon = {
       <path d="M21 15l-5-5L5 21" />
     </svg>
   ),
+  User: (p: IconProps) => (
+    <svg {...withDefaults(p)}>
+      <circle cx="12" cy="8" r="4" />
+      <path d="M3 20c.5-3.5 3.5-6 9-6s8.5 2.5 9 6" />
+    </svg>
+  ),
+  Mail: (p: IconProps) => (
+    <svg {...withDefaults(p)}>
+      <rect x="2" y="4" width="20" height="16" rx="3" />
+      <path d="M2 7l10 7 10-7" />
+    </svg>
+  ),
+  Lock: (p: IconProps) => (
+    <svg {...withDefaults(p)}>
+      <rect x="5" y="11" width="14" height="10" rx="2" />
+      <path d="M8 11V8a4 4 0 0 1 8 0v3" />
+    </svg>
+  ),
+  Eye: (p: IconProps) => (
+    <svg {...withDefaults(p)}>
+      <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z" />
+      <circle cx="12" cy="12" r="3" />
+    </svg>
+  ),
+  EyeOff: (p: IconProps) => (
+    <svg {...withDefaults(p)}>
+      <path d="M3 3l18 18" />
+      <path d="M10.58 10.58A3 3 0 0 0 12 15a3 3 0 0 0 2.42-4.42M9.88 5.09A10.94 10.94 0 0 1 12 5c6.5 0 10 7 10 7a18.82 18.82 0 0 1-4.11 5.11M6.61 6.61C3.78 8.4 2 12 2 12s3.5 7 10 7a10.9 10.9 0 0 0 4.39-.89" />
+    </svg>
+  ),
 };

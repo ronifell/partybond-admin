@@ -15,9 +15,9 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const sizeClass: Record<Size, string> = {
-  sm: 'h-9 px-3 text-xs',
-  md: 'h-10 px-4 text-sm',
-  lg: 'h-12 px-5 text-sm',
+  sm: 'min-h-9 px-3 py-2 text-xs',
+  md: 'min-h-10 px-4 py-2.5 text-sm',
+  lg: 'min-h-12 px-5 py-3 text-sm',
 };
 
 export function Button({
@@ -29,11 +29,12 @@ export function Button({
   leftIcon,
   rightIcon,
   disabled,
+  type = 'button',
   ...rest
 }: ButtonProps) {
   const baseByVariant: Record<Variant, string> = {
     primary:
-      'bg-brand-gradient text-white shadow-glow hover:scale-[1.02] active:scale-[0.98] disabled:hover:scale-100',
+      'bg-brand-gradient text-white shadow-glow hover:brightness-110 active:brightness-95 disabled:hover:brightness-100',
     ghost:
       'border border-glass-border bg-glass-surface text-ink hover:border-glass-border-strong hover:bg-glass-surface-light',
     danger:
@@ -44,10 +45,10 @@ export function Button({
 
   return (
     <button
-      type="button"
+      type={type}
       disabled={disabled || loading}
       className={cn(
-        'inline-flex select-none items-center justify-center gap-2 rounded-xl2 font-semibold transition-all duration-150 disabled:cursor-not-allowed disabled:opacity-60',
+        'inline-flex shrink-0 select-none items-center justify-center gap-2 whitespace-nowrap rounded-xl2 font-semibold transition-all duration-150 disabled:cursor-not-allowed disabled:opacity-60',
         sizeClass[size],
         baseByVariant[variant],
         className,
@@ -55,7 +56,7 @@ export function Button({
       {...rest}
     >
       {loading ? <Spinner /> : leftIcon}
-      <span>{children}</span>
+      <span className="whitespace-nowrap">{children}</span>
       {rightIcon}
     </button>
   );
