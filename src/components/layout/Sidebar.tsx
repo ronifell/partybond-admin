@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useI18n } from '@/i18n/I18nProvider';
+import { AppLogo } from '@/components/ui/AppLogo';
 import { Icon } from '@/components/ui/Icon';
 import { cn } from '@/lib/cn';
 
@@ -43,9 +44,7 @@ export function Sidebar({ open, onClose }: SidebarProps) {
       >
         <div className="flex items-center justify-between gap-2 border-b border-glass-border px-5 py-5">
           <Link href="/dashboard" className="flex items-center gap-3" onClick={onClose}>
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl2 bg-brand-gradient text-base font-black text-white shadow-glow">
-              P
-            </span>
+            <AppLogo size="sm" />
             <div>
               <p className="text-sm font-semibold leading-none gradient-text">
                 {t('app.name')}

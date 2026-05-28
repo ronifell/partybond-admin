@@ -47,6 +47,22 @@
   "auth": {
     "loginTitle": "Sign in to the admin panel",
     "loginSubtitle": "Sign in to access the administrator dashboard.",
+    "welcomeBack": "Welcome back!",
+    "loginTagline": "Find players. Play together. Win as one.",
+    "features": {
+      "findPlayers": {
+        "title": "Find Players",
+        "description": "Match with gamers in seconds."
+      },
+      "playTogether": {
+        "title": "Play Together",
+        "description": "Join sessions and enter the game."
+      },
+      "winAsOne": {
+        "title": "Win as One",
+        "description": "Team up and climb the ranks."
+      }
+    },
     "selectLanguage": "Select language",
     "email": "Email",
     "password": "Password",
@@ -227,6 +243,11 @@
       "namePlaceholder": "e.g. Free Fire",
       "status": "Status",
       "maxPlayers": "Maximum players",
+      "image": "Cover image",
+      "imagePlaceholder": "Click to upload (PNG, JPG, WebP)",
+      "imageHint": "Recommended: 512 × 512 px · max 5 MB",
+      "imageChange": "Change image",
+      "imageUploadError": "Image upload failed",
       "create": "Create game",
       "update": "Update game"
     },

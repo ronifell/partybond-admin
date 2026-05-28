@@ -17,7 +17,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         <Topbar onOpenSidebar={() => setOpen(true)} />
         <main
           className={
-            'flex min-h-0 flex-1 flex-col px-[2%] py-[1%] sm:px-[3%] ' +
+            'flex min-h-0 flex-1 flex-col px-[2%] py-[1%] sm:px-[3%] scrollbar-thin ' +
             (isDashboard ? 'overflow-hidden' : 'overflow-y-auto')
           }
         >

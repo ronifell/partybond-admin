@@ -147,4 +147,18 @@ export const Icon = {
       <path d="M21 4v4h-4M3 20v-4h4" />
     </svg>
   ),
+  Upload: (p: IconProps) => (
+    <svg {...withDefaults(p)}>
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+      <polyline points="17 8 12 3 7 8" />
+      <line x1="12" y1="3" x2="12" y2="15" />
+    </svg>
+  ),
+  Image: (p: IconProps) => (
+    <svg {...withDefaults(p)}>
+      <rect x="3" y="3" width="18" height="18" rx="2" />
+      <circle cx="8.5" cy="8.5" r="1.5" />
+      <path d="M21 15l-5-5L5 21" />
+    </svg>
+  ),
 };

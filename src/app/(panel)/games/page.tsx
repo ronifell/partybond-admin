@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useCallback, type FormEvent } from 'react';
+import { useEffect, useState, useCallback, useRef, type FormEvent, type ChangeEvent } from 'react';
 import toast from 'react-hot-toast';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { Card } from '@/components/ui/Card';
@@ -17,6 +17,30 @@ import { useI18n } from '@/i18n/I18nProvider';
 import { api, getApiError } from '@/lib/api';
 import type { Game, GameStatus } from '@/lib/types';
 
+/* ── Game thumbnail with letter fallback ── */
+function GameImage({ gameId, name, refreshKey }: { gameId: string; name: string; refreshKey?: number }) {
+  const [failed, setFailed] = useState(false);
+  const src = `/games/${gameId}.png${refreshKey ? `?v=${refreshKey}` : ''}`;
+
+  if (!failed) {
+    return (
+      <img
+        key={src}
+        src={src}
+        alt={name}
+        onError={() => setFailed(true)}
+        className="h-10 w-10 rounded-xl object-cover ring-1 ring-white/10"
+      />
+    );
+  }
+
+  return (
+    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-gradient-soft text-base font-bold text-ink">
+      {name[0]?.toUpperCase()}
+    </span>
+  );
+}
+
 export default function GamesPage() {
   const { t } = useI18n();
   const [games, setGames] = useState<Game[]>([]);
@@ -24,6 +48,7 @@ export default function GamesPage() {
   const [editing, setEditing] = useState<Game | null>(null);
   const [creating, setCreating] = useState(false);
   const [deleting, setDeleting] = useState<Game | null>(null);
+  const [refreshKey, setRefreshKey] = useState(0);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -98,12 +123,10 @@ export default function GamesPage() {
             </THead>
             <TBody>
               {games.map((g) => (
-                <TR key={g.id}>
+                <TR key={`${g.id}-${refreshKey}`}>
                   <TD>
                     <div className="flex items-center gap-3">
-                      <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-gradient-soft text-base font-bold text-ink">
-                        {g.name[0]?.toUpperCase()}
-                      </span>
+                      <GameImage gameId={g.id} name={g.name} refreshKey={refreshKey} />
                       <p className="font-semibold text-ink">{g.name}</p>
                     </div>
                   </TD>
@@ -153,6 +176,7 @@ export default function GamesPage() {
           onClose={() => setCreating(false)}
           onDone={() => {
             setCreating(false);
+            setRefreshKey((k) => k + 1);
             void load();
           }}
         />
@@ -164,6 +188,7 @@ export default function GamesPage() {
           onClose={() => setEditing(null)}
           onDone={() => {
             setEditing(null);
+            setRefreshKey((k) => k + 1);
             void load();
           }}
         />
@@ -191,6 +216,7 @@ export default function GamesPage() {
   );
 }
 
+/* ── Create / Edit modal ── */
 function GameFormModal({
   game,
   onClose,
@@ -209,6 +235,36 @@ function GameFormModal({
   const [submitting, setSubmitting] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
+  /* image upload */
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [existingImageError, setExistingImageError] = useState(false);
+
+  const existingImageSrc = isEdit ? `/games/${game!.id}.png?v=${Date.now()}` : null;
+
+  function handleFileChange(e: ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0] ?? null;
+    setImageFile(file);
+    if (file) {
+      const url = URL.createObjectURL(file);
+      setImagePreview(url);
+    } else {
+      setImagePreview(null);
+    }
+  }
+
+  async function uploadImage(gameId: string): Promise<void> {
+    if (!imageFile) return;
+    const form = new FormData();
+    form.append('image', imageFile);
+    const res = await fetch(`/api/games/${gameId}/image`, { method: 'POST', body: form });
+    if (!res.ok) {
+      const body = (await res.json().catch(() => ({}))) as { error?: string };
+      throw new Error(body.error ?? t('games.form.imageUploadError'));
+    }
+  }
+
   async function submit(e: FormEvent) {
     e.preventDefault();
     const next: Record<string, string> = {};
@@ -221,6 +277,8 @@ function GameFormModal({
 
     setSubmitting(true);
     try {
+      const savedId = isEdit ? game!.id : id;
+
       if (isEdit) {
         await api.patch(`/admin/games/${game!.id}`, {
           name,
@@ -237,6 +295,11 @@ function GameFormModal({
         });
         toast.success(t('toasts.gameCreated'));
       }
+
+      if (imageFile) {
+        await uploadImage(savedId);
+      }
+
       onDone();
     } catch (err) {
       toast.error(getApiError(err).message);
@@ -244,6 +307,8 @@ function GameFormModal({
       setSubmitting(false);
     }
   }
+
+  const previewSrc = imagePreview ?? (isEdit && !existingImageError ? existingImageSrc : null);
 
   return (
     <Modal
@@ -262,6 +327,47 @@ function GameFormModal({
       }
     >
       <form onSubmit={submit} className="space-y-4">
+        {/* Image upload */}
+        <div>
+          <label className="label-base">{t('games.form.image')}</label>
+          <button
+            type="button"
+            onClick={() => fileInputRef.current?.click()}
+            className="group relative flex w-full items-center justify-center overflow-hidden rounded-xl2 border border-dashed border-glass-border bg-black/40 transition-colors hover:border-brand-purple/60 hover:bg-brand-purple/5"
+            style={{ minHeight: previewSrc ? '120px' : '84px' }}
+          >
+            {previewSrc ? (
+              <>
+                <img
+                  src={previewSrc}
+                  alt=""
+                  onError={() => setExistingImageError(true)}
+                  className="max-h-[160px] w-full rounded-xl object-contain py-2"
+                />
+                <span className="absolute inset-0 flex items-center justify-center rounded-xl bg-black/50 opacity-0 transition-opacity group-hover:opacity-100">
+                  <span className="flex items-center gap-1.5 text-xs font-semibold text-white">
+                    <Icon.Edit size={13} />
+                    {t('games.form.imageChange')}
+                  </span>
+                </span>
+              </>
+            ) : (
+              <span className="flex flex-col items-center gap-1 py-5 text-ink-disabled">
+                <Icon.Upload size={20} />
+                <span className="text-xs">{t('games.form.imagePlaceholder')}</span>
+                <span className="text-[10px] text-ink-disabled/60">{t('games.form.imageHint')}</span>
+              </span>
+            )}
+          </button>
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/png,image/jpeg,image/webp"
+            className="hidden"
+            onChange={handleFileChange}
+          />
+        </div>
+
         {!isEdit ? (
           <Input
             label={t('games.form.id')}

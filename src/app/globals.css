@@ -7,6 +7,41 @@
     min-height: 100%;
   }
 
+  /* ── Modern custom scrollbar ── */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 77, 166, 0.55) 0%,
+      rgba(123, 63, 242, 0.7) 50%,
+      rgba(0, 209, 255, 0.55) 100%
+    );
+    border-radius: 999px;
+    transition: background 0.2s;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 77, 166, 0.8) 0%,
+      rgba(123, 63, 242, 0.95) 50%,
+      rgba(0, 209, 255, 0.8) 100%
+    );
+  }
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(123, 63, 242, 0.6) transparent;
+  }
+
   html,
   body {
     color: #FFFFFF;
@@ -88,15 +123,28 @@
   }
 
   .scrollbar-thin::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
   }
   .scrollbar-thin::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.12);
+    background: linear-gradient(
+      180deg,
+      rgba(255, 77, 166, 0.5) 0%,
+      rgba(123, 63, 242, 0.65) 50%,
+      rgba(0, 209, 255, 0.5) 100%
+    );
     border-radius: 999px;
   }
   .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background: linear-gradient(
+      180deg,
+      rgba(255, 77, 166, 0.75) 0%,
+      rgba(123, 63, 242, 0.9) 50%,
+      rgba(0, 209, 255, 0.75) 100%
+    );
   }
 
   .login-card {
@@ -128,19 +176,6 @@
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
-  }
-
-  .login-logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 64px;
-    height: 64px;
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    background: linear-gradient(135deg, #ff4da6 0%, #7b3ff2 50%, #00d1ff 100%);
-    box-shadow:
-      0 0 28px rgba(123, 63, 242, 0.45),
-      0 0 48px rgba(0, 209, 255, 0.2);
   }
 
   .login-title-admin {
@@ -192,6 +227,95 @@
   .login-bootstrap-code {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     color: #00d1ff;
+  }
+
+  .login-page {
+    @apply min-h-screen;
+  }
+
+  .login-page-inner {
+    @apply mx-auto grid min-h-screen w-full max-w-[1440px] lg:grid-cols-2;
+  }
+
+  .login-brand-panel {
+    @apply flex flex-col items-center justify-center px-6 py-10 sm:px-10 lg:px-14 xl:px-20;
+  }
+
+  .login-brand-hero {
+    @apply flex w-full max-w-2xl flex-col items-center text-center;
+  }
+
+  .login-brand-logo {
+    @apply h-auto w-full max-w-[220px] object-contain sm:max-w-[260px];
+  }
+
+  .login-welcome-title {
+    @apply text-[1.75rem] font-bold leading-tight tracking-tight sm:text-[2rem];
+    background: linear-gradient(90deg, #ff4da6 0%, #7b3ff2 50%, #00d1ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .login-card-logo {
+    @apply h-auto w-full max-w-[120px] object-contain sm:max-w-[140px];
+  }
+
+  .login-brand-wordmark {
+    @apply mt-4 flex items-baseline justify-center text-[2.25rem] font-black uppercase tracking-[0.18em] sm:text-[2.75rem] lg:text-[3rem];
+    font-style: italic;
+    transform: skewX(-8deg);
+  }
+
+  .login-brand-wordmark-party {
+    @apply text-white;
+  }
+
+  .login-brand-wordmark-bond {
+    background: linear-gradient(90deg, #ff4da6 0%, #7b3ff2 52%, #00d1ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .login-brand-tagline {
+    @apply mt-4 max-w-md text-base leading-relaxed text-ink-secondary sm:text-lg;
+    transform: skewX(0deg);
+  }
+
+  .login-feature-grid {
+    @apply mt-6 grid w-full grid-cols-1 gap-3 sm:grid-cols-3;
+  }
+
+  .login-feature-card {
+    @apply rounded-2xl border border-glass-border bg-black/45 p-4 backdrop-blur-sm transition-colors hover:border-glass-border-strong;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  }
+
+  .login-feature-icon {
+    @apply mb-3 flex h-10 w-10 items-center justify-center rounded-xl;
+  }
+
+  .login-feature-icon-pink {
+    background: rgba(255, 77, 166, 0.16);
+    color: #ff4da6;
+    box-shadow: 0 0 20px rgba(255, 77, 166, 0.12);
+  }
+
+  .login-feature-icon-cyan {
+    background: rgba(0, 209, 255, 0.14);
+    color: #00d1ff;
+    box-shadow: 0 0 20px rgba(0, 209, 255, 0.12);
+  }
+
+  .login-feature-icon-amber {
+    background: rgba(255, 176, 32, 0.14);
+    color: #ffb020;
+    box-shadow: 0 0 20px rgba(255, 176, 32, 0.12);
+  }
+
+  .login-form-panel {
+    @apply flex items-center justify-center px-4 py-10 lg:justify-end lg:px-10 xl:px-16;
   }
 }
 

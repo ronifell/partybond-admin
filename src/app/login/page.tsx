@@ -96,6 +96,94 @@ function FlagIcon({ locale }: { locale: Locale }) {
   );
 }
 
+function UsersFeatureIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="9" cy="8" r="3.5" stroke="currentColor" strokeWidth="1.75" />
+      <path d="M3 20c.5-3.5 3.5-6 6-6s6.5 2.5 7 6" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
+      <circle cx="17" cy="7" r="2.5" stroke="currentColor" strokeWidth="1.75" />
+      <path d="M21 18c-.4-2.5-2-4-4.5-4.4" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function BoltFeatureIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M13 2L4 14h7l-1 8 9-12h-7l1-8Z"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function TrophyFeatureIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M8 4h8v3a4 4 0 0 1-8 0V4ZM6 4H4a2 2 0 0 0 2 2v1a4 4 0 0 0 4 4M18 4h2a2 2 0 0 1-2 2v1a4 4 0 0 1-4 4"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+      />
+      <path d="M12 11v3M9 20h6M10 14h4v3H10v-3Z" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function LoginBrandingPanel() {
+  const { t } = useI18n();
+
+  const features = [
+    {
+      key: 'findPlayers',
+      icon: <UsersFeatureIcon />,
+      iconClass: 'login-feature-icon-pink',
+    },
+    {
+      key: 'playTogether',
+      icon: <BoltFeatureIcon />,
+      iconClass: 'login-feature-icon-cyan',
+    },
+    {
+      key: 'winAsOne',
+      icon: <TrophyFeatureIcon />,
+      iconClass: 'login-feature-icon-amber',
+    },
+  ] as const;
+
+  return (
+    <aside className="login-brand-panel">
+      <div className="login-brand-hero">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/logo.png" alt="Partybond" className="login-brand-logo" />
+        <h2 className="login-brand-wordmark" aria-label="Partybond">
+          <span className="login-brand-wordmark-party">PARTY</span>
+          <span className="login-brand-wordmark-bond">BOND</span>
+        </h2>
+        <p className="login-brand-tagline">{t('auth.loginTagline')}</p>
+
+        <div className="login-feature-grid">
+          {features.map(({ key, icon, iconClass }) => (
+            <div key={key} className="login-feature-card">
+              <div className={`login-feature-icon ${iconClass}`}>{icon}</div>
+              <h2 className="text-sm font-semibold text-ink">
+                {t(`auth.features.${key}.title`)}
+              </h2>
+              <p className="mt-1 text-xs leading-relaxed text-ink-secondary">
+                {t(`auth.features.${key}.description`)}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </aside>
+  );
+}
+
 export default function LoginPage() {
   const router = useRouter();
   const { signIn } = useAuth();
@@ -131,103 +219,107 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center px-4 py-10">
-      <div className="login-card relative w-full max-w-[420px]">
-        <div className="relative space-y-6 p-8">
-          <div className="flex flex-col items-center gap-4 text-center">
-            <div className="login-logo">
-              <span className="text-2xl font-black text-white">P</span>
-            </div>
-            <div>
-              <h1 className="text-[1.65rem] font-bold leading-tight tracking-tight">
-                <span className="text-white">Partybond</span>
-                <span className="login-title-admin"> Admin</span>
-              </h1>
-              <p className="mt-2 text-sm text-ink-secondary">{t('auth.loginSubtitle')}</p>
-            </div>
-          </div>
+    <div className="login-page">
+      <div className="login-page-inner">
+        <LoginBrandingPanel />
 
-          <form onSubmit={onSubmit} className="space-y-4">
-            <div>
-              <label htmlFor="email" className="label-base">
-                {t('auth.email')}
-              </label>
-              <div className="relative">
-                <span className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-brand-blue">
-                  <UserIcon />
-                </span>
-                <input
-                  id="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  className="login-input pl-10"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="admin@partybond.com"
+        <div className="login-form-panel">
+          <div className="login-card relative w-full max-w-[640px]">
+            <div className="relative space-y-7 p-10 sm:p-12">
+              <div className="flex flex-col items-center gap-3 text-center">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/login%20logo.png"
+                  alt="Partybond"
+                  className="login-card-logo"
                 />
+                <h1 className="login-welcome-title">{t('auth.welcomeBack')}</h1>
+                <p className="text-sm text-ink-secondary">{t('auth.loginSubtitle')}</p>
+              </div>
+
+              <form onSubmit={onSubmit} className="space-y-4">
+                <div>
+                  <label htmlFor="email" className="label-base">
+                    {t('auth.email')}
+                  </label>
+                  <div className="relative">
+                    <span className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-brand-blue">
+                      <UserIcon />
+                    </span>
+                    <input
+                      id="email"
+                      type="email"
+                      autoComplete="email"
+                      required
+                      className="login-input pl-10"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="admin@partybond.com"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="password" className="label-base">
+                    {t('auth.password')}
+                  </label>
+                  <div className="relative">
+                    <span className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-brand-purple">
+                      <LockIcon />
+                    </span>
+                    <input
+                      id="password"
+                      type={showPassword ? 'text' : 'password'}
+                      autoComplete="current-password"
+                      required
+                      className="login-input pl-10 pr-10"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      placeholder="••••••••"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword((v) => !v)}
+                      className="absolute inset-y-0 right-3 flex items-center text-ink-secondary transition-colors hover:text-ink"
+                      aria-label={showPassword ? 'Hide password' : 'Show password'}
+                    >
+                      <EyeIcon open={showPassword} />
+                    </button>
+                  </div>
+                  {errorMessage ? (
+                    <p className="mt-1.5 text-xs text-status-error">{errorMessage}</p>
+                  ) : null}
+                </div>
+
+                <button type="submit" className="login-btn" disabled={submitting}>
+                  {submitting ? t('auth.signingIn') : t('auth.signIn')}
+                </button>
+              </form>
+
+              <div className="space-y-4 pt-1">
+                <div className="login-divider">{t('auth.selectLanguage')}</div>
+                <div className="flex gap-2">
+                  {(['pt', 'en'] as Locale[]).map((l) => (
+                    <button
+                      key={l}
+                      type="button"
+                      onClick={() => setLocale(l)}
+                      className={
+                        'login-lang-btn' + (locale === l ? ' login-lang-btn-active' : '')
+                      }
+                    >
+                      <FlagIcon locale={l} />
+                      {l === 'pt' ? t('settings.portuguese') : t('settings.english')}
+                    </button>
+                  ))}
+                </div>
+                <p className="text-center text-[11px] leading-relaxed text-ink-disabled">
+                  {t('auth.needBootstrapPrefix')}{' '}
+                  <span className="login-bootstrap-code">{t('auth.needBootstrapCommand')}</span>{' '}
+                  {t('auth.needBootstrapSuffix')}
+                </p>
               </div>
             </div>
-
-            <div>
-              <label htmlFor="password" className="label-base">
-                {t('auth.password')}
-              </label>
-              <div className="relative">
-                <span className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-brand-purple">
-                  <LockIcon />
-                </span>
-                <input
-                  id="password"
-                  type={showPassword ? 'text' : 'password'}
-                  autoComplete="current-password"
-                  required
-                  className="login-input pl-10 pr-10"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="••••••••"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword((v) => !v)}
-                  className="absolute inset-y-0 right-3 flex items-center text-ink-secondary transition-colors hover:text-ink"
-                  aria-label={showPassword ? 'Hide password' : 'Show password'}
-                >
-                  <EyeIcon open={showPassword} />
-                </button>
-              </div>
-              {errorMessage ? (
-                <p className="mt-1.5 text-xs text-status-error">{errorMessage}</p>
-              ) : null}
-            </div>
-
-            <button type="submit" className="login-btn" disabled={submitting}>
-              {submitting ? t('auth.signingIn') : t('auth.signIn')}
-            </button>
-          </form>
-
-          <div className="space-y-4 pt-1">
-            <div className="login-divider">{t('auth.selectLanguage')}</div>
-            <div className="flex gap-2">
-              {(['pt', 'en'] as Locale[]).map((l) => (
-                <button
-                  key={l}
-                  type="button"
-                  onClick={() => setLocale(l)}
-                  className={
-                    'login-lang-btn' + (locale === l ? ' login-lang-btn-active' : '')
-                  }
-                >
-                  <FlagIcon locale={l} />
-                  {l === 'pt' ? t('settings.portuguese') : t('settings.english')}
-                </button>
-              ))}
-            </div>
-            <p className="text-center text-[11px] leading-relaxed text-ink-disabled">
-              {t('auth.needBootstrapPrefix')}{' '}
-              <span className="login-bootstrap-code">{t('auth.needBootstrapCommand')}</span>{' '}
-              {t('auth.needBootstrapSuffix')}
-            </p>
           </div>
         </div>
       </div>

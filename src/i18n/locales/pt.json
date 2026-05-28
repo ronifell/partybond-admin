@@ -47,6 +47,22 @@
   "auth": {
     "loginTitle": "Entrar no painel administrativo",
     "loginSubtitle": "Entre para acessar o painel administrativo.",
+    "welcomeBack": "Bem-vindo de volta!",
+    "loginTagline": "Encontre jogadores. Jogue junto. Vença como um só.",
+    "features": {
+      "findPlayers": {
+        "title": "Encontre Jogadores",
+        "description": "Combine com gamers em segundos."
+      },
+      "playTogether": {
+        "title": "Jogue Junto",
+        "description": "Entre em sessões e vá para o jogo."
+      },
+      "winAsOne": {
+        "title": "Vença como Um",
+        "description": "Forme equipes e suba no ranking."
+      }
+    },
     "selectLanguage": "Selecionar idioma",
     "email": "E-mail",
     "password": "Senha",
@@ -227,6 +243,11 @@
       "namePlaceholder": "ex.: Free Fire",
       "status": "Status",
       "maxPlayers": "Jogadores máximos",
+      "image": "Imagem de capa",
+      "imagePlaceholder": "Clique para enviar (PNG, JPG, WebP)",
+      "imageHint": "Recomendado: 512 × 512 px · máx. 5 MB",
+      "imageChange": "Alterar imagem",
+      "imageUploadError": "Falha ao enviar imagem",
       "create": "Criar jogo",
       "update": "Atualizar jogo"
     },

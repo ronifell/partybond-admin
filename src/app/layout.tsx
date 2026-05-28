@@ -5,7 +5,7 @@ import { Providers } from './providers';
 export const metadata: Metadata = {
   title: 'Partybond Admin',
   description: 'Admin panel for Partybond matchmaking app',
-  icons: { icon: '/favicon.svg' },
+  icons: { icon: '/logo.png' },
 };
 
 export const viewport: Viewport = {
