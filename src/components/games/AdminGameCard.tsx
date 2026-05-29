@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Icon } from '@/components/ui/Icon';
 import { DISABLED_GAME_CARD_FILL, getGameAccent } from '@/lib/gameAccents';
-import { getGameImageUrl } from '@/lib/gameImages';
+import { getGameImageUrls } from '@/lib/gameImages';
 import type { Game } from '@/lib/types';
 
 const IMAGE_WIDTH = 96;
@@ -42,8 +42,18 @@ function GameThumbnail({
   accentTagBg: string;
   accentBorder: string;
 }) {
+  const sources = getGameImageUrls(gameId, refreshKey);
+  const [sourceIndex, setSourceIndex] = useState(0);
   const [failed, setFailed] = useState(false);
-  const src = getGameImageUrl(gameId, refreshKey);
+  const src = sources[sourceIndex] ?? sources[0]!;
+
+  function handleImageError() {
+    if (sourceIndex + 1 < sources.length) {
+      setSourceIndex((i) => i + 1);
+      return;
+    }
+    setFailed(true);
+  }
 
   return (
     <div
@@ -59,7 +69,7 @@ function GameThumbnail({
           key={src}
           src={src}
           alt={name}
-          onError={() => setFailed(true)}
+          onError={handleImageError}
           className="h-full w-full object-cover"
         />
       ) : (
