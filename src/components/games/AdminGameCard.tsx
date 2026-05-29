@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Icon } from '@/components/ui/Icon';
 import { DISABLED_GAME_CARD_FILL, getGameAccent } from '@/lib/gameAccents';
+import { getGameImageUrl } from '@/lib/gameImages';
 import type { Game } from '@/lib/types';
 
 const IMAGE_WIDTH = 96;
@@ -42,7 +43,7 @@ function GameThumbnail({
   accentBorder: string;
 }) {
   const [failed, setFailed] = useState(false);
-  const src = `/games/${gameId}.png${refreshKey ? `?v=${refreshKey}` : ''}`;
+  const src = getGameImageUrl(gameId, refreshKey);
 
   return (
     <div

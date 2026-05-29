@@ -12,6 +12,7 @@ import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { Icon } from '@/components/ui/Icon';
 import { AdminGameCard } from '@/components/games/AdminGameCard';
+import { getGameImageUrl } from '@/lib/gameImages';
 import { useI18n } from '@/i18n/I18nProvider';
 import { api, getApiError } from '@/lib/api';
 import type { Game, GameStatus } from '@/lib/types';
@@ -182,7 +183,7 @@ function GameFormModal({
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [existingImageError, setExistingImageError] = useState(false);
 
-  const existingImageSrc = isEdit ? `/games/${game!.id}.png?v=${Date.now()}` : null;
+  const existingImageSrc = isEdit ? getGameImageUrl(game!.id, Date.now()) : null;
 
   function handleFileChange(e: ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0] ?? null;
