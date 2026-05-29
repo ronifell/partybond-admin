@@ -14,7 +14,7 @@ import { Icon } from '@/components/ui/Icon';
 import { AdminGameCard } from '@/components/games/AdminGameCard';
 import { getGameImageUrl } from '@/lib/gameImages';
 import { useI18n } from '@/i18n/I18nProvider';
-import { api, getApiError } from '@/lib/api';
+import { api, getApiError, uploadGameImage } from '@/lib/api';
 import type { Game, GameStatus } from '@/lib/types';
 
 export default function GamesPage() {
@@ -121,6 +121,10 @@ export default function GamesPage() {
             setRefreshKey((k) => k + 1);
             void load();
           }}
+          onRefresh={() => {
+            setRefreshKey((k) => k + 1);
+            void load();
+          }}
         />
       ) : null}
 
@@ -130,6 +134,10 @@ export default function GamesPage() {
           onClose={() => setEditing(null)}
           onDone={() => {
             setEditing(null);
+            setRefreshKey((k) => k + 1);
+            void load();
+          }}
+          onRefresh={() => {
             setRefreshKey((k) => k + 1);
             void load();
           }}
@@ -163,10 +171,12 @@ function GameFormModal({
   game,
   onClose,
   onDone,
+  onRefresh,
 }: {
   game?: Game;
   onClose: () => void;
   onDone: () => void;
+  onRefresh: () => void;
 }) {
   const { t } = useI18n();
   const isEdit = !!game;
@@ -196,17 +206,6 @@ function GameFormModal({
     }
   }
 
-  async function uploadImage(gameId: string): Promise<void> {
-    if (!imageFile) return;
-    const form = new FormData();
-    form.append('image', imageFile);
-    await api.post(`/admin/games/${gameId}/image`, form, {
-      timeout: 120_000,
-      maxContentLength: 6 * 1024 * 1024,
-      maxBodyLength: 6 * 1024 * 1024,
-    });
-  }
-
   async function submit(e: FormEvent) {
     e.preventDefault();
     const next: Record<string, string> = {};
@@ -218,9 +217,10 @@ function GameFormModal({
     if (Object.keys(next).length > 0) return;
 
     setSubmitting(true);
-    try {
-      const savedId = isEdit ? game!.id : id;
+    const savedId = isEdit ? game!.id : id;
+    const pendingImage = imageFile;
 
+    try {
       if (isEdit) {
         await api.patch(`/admin/games/${game!.id}`, {
           name,
@@ -238,11 +238,15 @@ function GameFormModal({
         toast.success(t('toasts.gameCreated'));
       }
 
-      if (imageFile) {
-        await uploadImage(savedId);
-      }
-
       onDone();
+
+      if (pendingImage) {
+        void uploadGameImage(savedId, pendingImage)
+          .then(() => onRefresh())
+          .catch((err) => {
+            toast.error(getApiError(err).message || t('games.form.imageUploadError'));
+          });
+      }
     } catch (err) {
       toast.error(getApiError(err).message);
     } finally {
@@ -262,13 +266,13 @@ function GameFormModal({
           <Button variant="ghost" onClick={onClose}>
             {t('common.cancel')}
           </Button>
-          <Button onClick={submit} loading={submitting}>
+          <Button type="submit" form="game-form" loading={submitting}>
             {isEdit ? t('games.form.update') : t('games.form.create')}
           </Button>
         </>
       }
     >
-      <form onSubmit={submit} className="space-y-4">
+      <form id="game-form" onSubmit={submit} className="space-y-4">
         {/* Image upload */}
         <div>
           <label className="label-base">{t('games.form.image')}</label>

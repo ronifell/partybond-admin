@@ -33,8 +33,40 @@ api.interceptors.request.use((config) => {
     config.headers = config.headers ?? {};
     (config.headers as Record<string, string>).Authorization = `Bearer ${token}`;
   }
+  // Let the browser set multipart boundaries for file uploads.
+  if (typeof FormData !== 'undefined' && config.data instanceof FormData) {
+    delete config.headers['Content-Type'];
+  }
   return config;
 });
+
+/** Upload a game thumbnail via multipart/form-data (fetch avoids axios FormData issues). */
+export async function uploadGameImage(gameId: string, file: File): Promise<void> {
+  const form = new FormData();
+  form.append('image', file);
+  const token = getStoredToken();
+  const headers: HeadersInit = {};
+  if (token) headers.Authorization = `Bearer ${token}`;
+
+  const controller = new AbortController();
+  const timeoutId = window.setTimeout(() => controller.abort(), 120_000);
+
+  try {
+    const res = await fetch(`${getApiUrl()}/api/v1/admin/games/${encodeURIComponent(gameId)}/image`, {
+      method: 'POST',
+      headers,
+      body: form,
+      signal: controller.signal,
+    });
+    if (!res.ok) {
+      const body = (await res.json().catch(() => ({}))) as { error?: ApiErrorShape };
+      if (body.error) throw { response: { data: { error: body.error } } };
+      throw new Error(`Upload failed (${res.status})`);
+    }
+  } finally {
+    window.clearTimeout(timeoutId);
+  }
+}
 
 export interface ApiErrorShape {
   code?: string;

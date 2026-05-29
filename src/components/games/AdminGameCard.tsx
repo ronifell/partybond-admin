@@ -8,6 +8,7 @@ import { getGameImageUrls } from '@/lib/gameImages';
 import type { Game } from '@/lib/types';
 
 const IMAGE_WIDTH = 96;
+const CARD_HEIGHT = 152;
 const CARD_RADIUS = 18;
 
 function StatusBadge({ active }: { active: boolean }) {
@@ -57,7 +58,7 @@ function GameThumbnail({
 
   return (
     <div
-      className="relative shrink-0 self-stretch overflow-hidden bg-[#1A1230]"
+      className="relative h-full shrink-0 overflow-hidden bg-[#1A1230]"
       style={{
         width: IMAGE_WIDTH,
         borderTopLeftRadius: CARD_RADIUS,
@@ -70,10 +71,10 @@ function GameThumbnail({
           src={src}
           alt={name}
           onError={handleImageError}
-          className="h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover"
         />
       ) : (
-        <div className="flex h-full min-h-[148px] w-full items-center justify-center bg-brand-gradient">
+        <div className="flex h-full w-full items-center justify-center bg-brand-gradient">
           <span className="text-3xl font-bold text-white">{name[0]?.toUpperCase()}</span>
         </div>
       )}
@@ -125,14 +126,16 @@ export function AdminGameCard({
 
   return (
     <article
+      className="overflow-hidden"
       style={{
+        height: CARD_HEIGHT,
         borderRadius: CARD_RADIUS,
         border: `1.5px solid ${disabled ? 'rgba(255,255,255,0.12)' : accent.border}`,
         backgroundColor: disabled ? DISABLED_GAME_CARD_FILL : accent.fill,
         boxShadow: disabled ? 'none' : `0 4px 10px ${accent.tagText}40`,
       }}
     >
-      <div className="flex items-stretch">
+      <div className="flex h-full items-stretch">
         <GameThumbnail
           gameId={game.id}
           name={game.name}
