@@ -200,11 +200,11 @@ function GameFormModal({
     if (!imageFile) return;
     const form = new FormData();
     form.append('image', imageFile);
-    const res = await fetch(`/api/games/${gameId}/image`, { method: 'POST', body: form });
-    if (!res.ok) {
-      const body = (await res.json().catch(() => ({}))) as { error?: string };
-      throw new Error(body.error ?? t('games.form.imageUploadError'));
-    }
+    await api.post(`/admin/games/${gameId}/image`, form, {
+      timeout: 120_000,
+      maxContentLength: 6 * 1024 * 1024,
+      maxBodyLength: 6 * 1024 * 1024,
+    });
   }
 
   async function submit(e: FormEvent) {
