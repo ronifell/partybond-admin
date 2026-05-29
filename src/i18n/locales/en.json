@@ -46,26 +46,45 @@
   },
   "auth": {
     "loginTitle": "Sign in to the admin panel",
-    "loginSubtitle": "Sign in to access the administrator dashboard.",
+    "loginSubtitle": "Sign in to continue your gaming journey",
     "welcomeBack": "Welcome back!",
-    "loginTagline": "Find players. Play together. Win as one.",
+    "loginTagline": "The ultimate matchmaking experience for gamers.",
+    "hero": {
+      "line1Prefix": "FIND",
+      "line1Highlight": "PLAYERS.",
+      "line2Prefix": "PLAY",
+      "line2Highlight": "TOGETHER.",
+      "line3Prefix": "WIN AS",
+      "line3Highlight": "ONE."
+    },
     "features": {
       "findPlayers": {
         "title": "Find Players",
-        "description": "Match with gamers in seconds."
+        "description": "Match with players in seconds."
       },
       "playTogether": {
         "title": "Play Together",
-        "description": "Join sessions and enter the game."
+        "description": "Team up and climb the ranks."
       },
       "winAsOne": {
         "title": "Win as One",
-        "description": "Team up and climb the ranks."
+        "description": "Victory is better together."
       }
     },
-    "selectLanguage": "Select language",
+    "playersOnline": "12,840 players online",
+    "morePlayers": "+2.4K",
+    "selectLanguage": "Language",
     "email": "Email",
     "password": "Password",
+    "emailPlaceholder": "Enter your email",
+    "passwordPlaceholder": "Enter your password",
+    "rememberMe": "Remember me",
+    "forgotPassword": "Forgot password?",
+    "orContinueWith": "OR CONTINUE WITH",
+    "continueWithGoogle": "Google",
+    "continueWithDiscord": "Discord",
+    "noAccount": "Don't have an account?",
+    "createOne": "Create one",
     "signIn": "Sign in",
     "signingIn": "Signing in…",
     "invalidCredentials": "Invalid credentials",

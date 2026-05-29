@@ -3,6 +3,7 @@
 import { useAuth } from '@/lib/auth';
 import { useI18n } from '@/i18n/I18nProvider';
 import { Avatar } from '@/components/ui/Avatar';
+import { AppBrand } from '@/components/ui/AppBrand';
 import { Icon } from '@/components/ui/Icon';
 import type { Locale } from '@/i18n';
 
@@ -24,6 +25,8 @@ export function Topbar({ onOpenSidebar }: TopbarProps) {
       >
         <Icon.Menu />
       </button>
+
+      <AppBrand size="sm" className="lg:hidden" />
 
       <div className="flex-1" />
 

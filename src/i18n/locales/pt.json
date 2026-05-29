@@ -46,26 +46,45 @@
   },
   "auth": {
     "loginTitle": "Entrar no painel administrativo",
-    "loginSubtitle": "Entre para acessar o painel administrativo.",
+    "loginSubtitle": "Entre para continuar sua jornada nos games.",
     "welcomeBack": "Bem-vindo de volta!",
-    "loginTagline": "Encontre jogadores. Jogue junto. Vença como um só.",
+    "loginTagline": "A melhor experiência de matchmaking para gamers.",
+    "hero": {
+      "line1Prefix": "ENCONTRE",
+      "line1Highlight": "JOGADORES.",
+      "line2Prefix": "JOGUE",
+      "line2Highlight": "JUNTO.",
+      "line3Prefix": "VENÇA COMO",
+      "line3Highlight": "UM."
+    },
     "features": {
       "findPlayers": {
         "title": "Encontre Jogadores",
-        "description": "Combine com gamers em segundos."
+        "description": "Combine com jogadores em segundos."
       },
       "playTogether": {
         "title": "Jogue Junto",
-        "description": "Entre em sessões e vá para o jogo."
+        "description": "Forme equipes e suba no ranking."
       },
       "winAsOne": {
         "title": "Vença como Um",
-        "description": "Forme equipes e suba no ranking."
+        "description": "A vitória é melhor juntos."
       }
     },
-    "selectLanguage": "Selecionar idioma",
+    "playersOnline": "12.840 jogadores online",
+    "morePlayers": "+2,4K",
+    "selectLanguage": "Idioma",
     "email": "E-mail",
     "password": "Senha",
+    "emailPlaceholder": "Digite seu e-mail",
+    "passwordPlaceholder": "Digite sua senha",
+    "rememberMe": "Lembrar de mim",
+    "forgotPassword": "Esqueceu a senha?",
+    "orContinueWith": "OU CONTINUE COM",
+    "continueWithGoogle": "Google",
+    "continueWithDiscord": "Discord",
+    "noAccount": "Não tem uma conta?",
+    "createOne": "Criar uma",
     "signIn": "Entrar",
     "signingIn": "Entrando…",
     "invalidCredentials": "Credenciais inválidas",

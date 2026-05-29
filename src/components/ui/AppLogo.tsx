@@ -1,6 +1,7 @@
 import { cn } from '@/lib/cn';
 
 const sizeClass = {
+  xs: 'h-7 w-7',
   sm: 'h-9 w-9',
   md: 'h-12 w-12',
   lg: 'h-16 w-16',
