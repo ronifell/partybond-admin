@@ -5,41 +5,16 @@ import toast from 'react-hot-toast';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
-import { Badge } from '@/components/ui/Badge';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { EmptyState } from '@/components/ui/EmptyState';
 import { Modal } from '@/components/ui/Modal';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { Icon } from '@/components/ui/Icon';
-import { Table, THead, TBody, TR, TH, TD } from '@/components/ui/Table';
+import { AdminGameCard } from '@/components/games/AdminGameCard';
 import { useI18n } from '@/i18n/I18nProvider';
 import { api, getApiError } from '@/lib/api';
 import type { Game, GameStatus } from '@/lib/types';
-
-/* ── Game thumbnail with letter fallback ── */
-function GameImage({ gameId, name, refreshKey }: { gameId: string; name: string; refreshKey?: number }) {
-  const [failed, setFailed] = useState(false);
-  const src = `/games/${gameId}.png${refreshKey ? `?v=${refreshKey}` : ''}`;
-
-  if (!failed) {
-    return (
-      <img
-        key={src}
-        src={src}
-        alt={name}
-        onError={() => setFailed(true)}
-        className="h-10 w-10 rounded-xl object-cover ring-1 ring-white/10"
-      />
-    );
-  }
-
-  return (
-    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-gradient-soft text-base font-bold text-ink">
-      {name[0]?.toUpperCase()}
-    </span>
-  );
-}
 
 export default function GamesPage() {
   const { t } = useI18n();
@@ -90,14 +65,14 @@ export default function GamesPage() {
         }
       />
 
-      <Card className="overflow-hidden">
-        {loading ? (
-          <div className="space-y-2 p-5">
-            <Skeleton className="h-12 w-full" />
-            <Skeleton className="h-12 w-full" />
-            <Skeleton className="h-12 w-full" />
-          </div>
-        ) : games.length === 0 ? (
+      {loading ? (
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <Skeleton key={i} className="h-[152px] w-full rounded-2xl" />
+          ))}
+        </div>
+      ) : games.length === 0 ? (
+        <Card className="overflow-hidden">
           <EmptyState
             title={t('common.empty')}
             subtitle={t('games.subtitle')}
@@ -108,68 +83,34 @@ export default function GamesPage() {
               </Button>
             }
           />
-        ) : (
-          <Table>
-            <THead>
-              <TR>
-                <TH>{t('games.columns.game')}</TH>
-                <TH className="hidden md:table-cell">{t('games.columns.id')}</TH>
-                <TH>{t('games.columns.status')}</TH>
-                <TH className="hidden sm:table-cell">{t('games.columns.maxPlayers')}</TH>
-                <TH className="hidden md:table-cell">{t('games.columns.sessions')}</TH>
-                <TH className="hidden md:table-cell">{t('games.columns.players')}</TH>
-                <TH className="text-right">{t('games.columns.actions')}</TH>
-              </TR>
-            </THead>
-            <TBody>
-              {games.map((g) => (
-                <TR key={`${g.id}-${refreshKey}`}>
-                  <TD>
-                    <div className="flex items-center gap-3">
-                      <GameImage gameId={g.id} name={g.name} refreshKey={refreshKey} />
-                      <p className="font-semibold text-ink">{g.name}</p>
-                    </div>
-                  </TD>
-                  <TD className="hidden md:table-cell">
-                    <code className="rounded-md bg-bg-card px-2 py-0.5 text-[11px] text-ink-secondary">
-                      {g.id}
-                    </code>
-                  </TD>
-                  <TD>
-                    <Badge tone={g.status === 'active' ? 'success' : 'warn'}>
-                      {t(`games.status.${g.status}`)}
-                    </Badge>
-                  </TD>
-                  <TD className="hidden sm:table-cell">{g.maxPlayers}</TD>
-                  <TD className="hidden md:table-cell">{g._count?.sessions ?? 0}</TD>
-                  <TD className="hidden md:table-cell">{g._count?.gameProfiles ?? 0}</TD>
-                  <TD>
-                    <div className="flex items-center justify-end gap-1.5">
-                      <Button variant="ghost" size="sm" onClick={() => setEditing(g)}>
-                        <Icon.Edit size={14} />
-                        <span className="hidden sm:inline">{t('common.edit')}</span>
-                      </Button>
-                      <Button
-                        variant="subtle"
-                        size="sm"
-                        onClick={() => setDeleting(g)}
-                        disabled={(g._count?.sessions ?? 0) > 0 || (g._count?.gameProfiles ?? 0) > 0}
-                        title={
-                          (g._count?.sessions ?? 0) > 0 || (g._count?.gameProfiles ?? 0) > 0
-                            ? t('games.deleteSubtitle')
-                            : undefined
-                        }
-                      >
-                        <Icon.Trash size={14} />
-                      </Button>
-                    </div>
-                  </TD>
-                </TR>
-              ))}
-            </TBody>
-          </Table>
-        )}
-      </Card>
+        </Card>
+      ) : (
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
+          {games.map((g) => (
+            <AdminGameCard
+              key={`${g.id}-${refreshKey}`}
+              game={g}
+              refreshKey={refreshKey}
+              onEdit={() => setEditing(g)}
+              onDelete={() => setDeleting(g)}
+              deleteDisabled={(g._count?.sessions ?? 0) > 0 || (g._count?.gameProfiles ?? 0) > 0}
+              deleteTitle={
+                (g._count?.sessions ?? 0) > 0 || (g._count?.gameProfiles ?? 0) > 0
+                  ? t('games.deleteSubtitle')
+                  : undefined
+              }
+              labels={{
+                maxPlayers: t('games.columns.maxPlayers'),
+                sessions: t('games.columns.sessions'),
+                players: t('games.columns.players'),
+                edit: t('common.edit'),
+                active: t('games.status.active'),
+                soon: t('games.status.coming_soon'),
+              }}
+            />
+          ))}
+        </div>
+      )}
 
       {creating ? (
         <GameFormModal
